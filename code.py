@@ -2,7 +2,7 @@
 """
 Created on Thu Jul 23 15:38:28 2020
 
-@author: KIIT
+@author: Pranav Jain
 """
 
 
@@ -118,3 +118,45 @@ ax.set_xticklabels(
 #4. Cylinders and HP have good correlation with each other.
 #5. HP is nicely correlated with Price and Cylinders.
 #6. Year has also average correlation with almost other columns other than Cylinders which is weakly correlated to it.
+
+##STEP 8###
+
+#SCATTERPLOT 
+
+#HP vs Price
+fig, ax = plt.subplots(figsize=(10,10))
+ax.scatter(data['HP'], data['Price'])
+ax.set_xlabel('HP')
+ax.set_ylabel('Price')
+plt.show()
+
+#Price vs Year
+fig, ax = plt.subplots(figsize=(10,10))
+ax.scatter(data['Price'],data['Year'])
+ax.set_xlabel('Price')
+ax.set_ylabel('Year')
+plt.show()
+
+#HEATMAP
+plt.figure(figsize=(10,10))
+c= data.corr()
+sns.heatmap(c,cmap='BrBG',annot=True)
+c
+
+#Plotting Histogram
+data.Make.value_counts().nlargest(40).plot(kind='bar', figsize=(10,5))
+plt.title('Number of cars vs Make')
+plt.ylabel('Number of cars')
+plt.xlabel('Make');
+ 
+#Plotting Histogram
+data.Year.value_counts().nlargest(40).plot(kind='bar', figsize=(10,5))
+plt.title('Frequency vs Year')
+plt.ylabel('Frequency')
+plt.xlabel('Year');
+
+#Insights
+#1st Scatterplot shows that, price of the car varies with it's horsepower i.e.There is some linearity between them. 
+#2nd Scatterplot shows that, with the increasing year, the range of car prices have also been increased.
+#It can be clearly seen from heatmap that Price is affected by some features such as Engine Size, HP, and Cylinders.
+#It can be seen from histogram that Chevrolet has highest no. of cars. Also most cars are 2015 and 2016 model.
