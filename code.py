@@ -60,6 +60,7 @@ data.count()
 
 ##STEP 5###
 #Plotiing graph to check for outliers in each column
+  
 sns.boxplot(x=data['Year'])
 sns.boxplot(x=data['HP'])
 sns.boxplot(x=data['Cylinders'])
@@ -67,6 +68,20 @@ sns.boxplot(x=data['MPG-H'])
 sns.boxplot(x=data['MPG-C'])
 sns.boxplot(x=data['Popularity'])
 sns.boxplot(x=data['Price'])
+
+#Removing outliers using IQR method    
+
+#printing IQR values of different columns
+Q1 = data.quantile(0.25)
+Q3 = data.quantile(0.75)
+IQR = Q3 - Q1
+print(IQR)
+
+print((data < (Q1 - 1.5 * IQR)) |(data > (Q3 + 1.5 * IQR)))
+
+#Eliminating the outliers
+data = data[~((data < (Q1 - 1.5 * IQR)) |(data > (Q3 + 1.5 * IQR))).any(axis=1)]
+data.shape
 
 ##STEP 6###
 #FInding Car brand with maximum count in data
