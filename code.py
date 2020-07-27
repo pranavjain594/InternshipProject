@@ -94,3 +94,27 @@ data.groupby('Make')['Price'].mean()
 data.groupby('Make')['Price'].mean().plot(kind='bar')
 plt.show()
 
+##STEP 7###
+
+#Plotting correlation matrix using heatmap.
+
+corr = data.corr()
+ax = sns.heatmap(
+    corr, 
+    vmin=-1, vmax=1, center=0,
+    cmap=sns.diverging_palette(20, 220, n=200),
+    square=True
+)
+ax.set_xticklabels(
+    ax.get_xticklabels(),
+    rotation=45,
+    horizontalalignment='right'
+);
+        
+#Observations(Insights)
+#1. Price has best correlation with HP and least with MPG-H. It has a fine correlation with Year too.
+#2. Popularity doesn't have any good correlation with any other attribute. It's almost average in all cases.
+#3. MPG-C and MPG-H have best correlation in entire dataset. Whereas both of them are least correlated with Cylinders and HP.
+#4. Cylinders and HP have good correlation with each other.
+#5. HP is nicely correlated with Price and Cylinders.
+#6. Year has also average correlation with almost other columns other than Cylinders which is weakly correlated to it.
